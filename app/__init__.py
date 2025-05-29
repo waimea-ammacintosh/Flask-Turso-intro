@@ -19,7 +19,7 @@ app = Flask(__name__)
 client = None
 
 #-----------------------------------------------------------
-# Connect to the Turso DB and return the connection
+# Connect to the Turso DB and return the connection         
 #-----------------------------------------------------------
 def connect_db():
     global client
@@ -33,6 +33,9 @@ def connect_db():
 #-----------------------------------------------------------
 @app.get("/")
 def home():
+    client = connect_db()
+    result = client.execute("SELECT * FROM things")
+    print(result.rows)
     return render_template("pages/home.jinja")
 
 
