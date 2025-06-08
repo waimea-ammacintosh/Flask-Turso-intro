@@ -19,7 +19,7 @@ app = Flask(__name__)
 client = None
 
 #-----------------------------------------------------------
-# Connect to the Turso DB and return the connection         
+# Connect to the Turso DB and return the connection          
 #-----------------------------------------------------------
 def connect_db():
     global client
@@ -29,7 +29,7 @@ def connect_db():
 
 
 #-----------------------------------------------------------
-# Home Page with list of things
+# Home Page with list of things                             
 #-----------------------------------------------------------
 @app.get("/")
 def home():
