@@ -70,15 +70,10 @@ def new_thing():
 #-----------------------------------------------------------
 @app.post("/add-thing")
 def add_thing():
-    print("ADDING")
-    
     #  get the data from the form
     name = request.form.get("name")
     price = request.form.get("price")
-
-    print(name)
-    print(price)
-     
+    
     #  connect to the DB
     client = connect_db()
     
@@ -96,7 +91,17 @@ def add_thing():
 #-----------------------------------------------------------
 @app.get("/delete/<int:id>")
 def delete_thing(id):
-    return redirect("/")
+    
+    #  connect to the DB
+    client = connect_db()
+    
+    # delete the thing from DB
+    sql = "DELETE FROM things WHERE id=?"
+    values = [id]
+    client.execute(sql, values)
+
+    #  head back to the home
+    return redirect ("/")
 
 
 #-----------------------------------------------------------
